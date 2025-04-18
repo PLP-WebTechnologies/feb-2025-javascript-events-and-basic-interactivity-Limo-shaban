@@ -1,0 +1,77 @@
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Webpage</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Interactive Webpage</h1>
+    
+    <!-- Form to demonstrate validation -->
+    <form id="myForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br><br>
+        
+        <button type="submit">Submit</button>
+    </form>
+
+    <p id="formMessage" class="hidden"></p>
+
+    <br>
+
+    <!-- Button to toggle visibility -->
+    <button id="toggleButton">Click to Toggle Message</button>
+    <p id="toggleMessage" class="hidden">This is a toggled message!</p>
+
+    <script>
+        // Form validation event listener
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get form elements
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('formMessage');
+
+            // Simple form validation
+            if (username === "" || email === "") {
+                message.textContent = "All fields are required!";
+                message.className = 'error'; // Show error message
+            } else {
+                message.textContent = "Form submitted successfully!";
+                message.className = 'success'; // Show success message
+            }
+
+            // Display the message
+            message.classList.remove('hidden');
+        });
+
+        // Button to toggle visibility of a message
+        document.getElementById('toggleButton').addEventListener('click', function() {
+            const toggleMessage = document.getElementById('toggleMessage');
+            toggleMessage.classList.toggle('hidden'); // Toggle visibility
+        });
+    </script>
+</body>
+</html>
